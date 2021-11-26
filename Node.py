@@ -10,16 +10,7 @@ from TokenPush import TokenPush
 
 
 class Node:
-    token: Token = None
-    edges: List[Edge] = None
-    xyCoordinates = {"x": 0, "y": 0}
-    isGoal: bool = None
-    stepsToReach: int = sys.maxsize
-    pathPredecessor = None
-    parentSet: NodeSet = None
-
-    def __init__(self, parent_set, token, xy_coordinates, is_goal):
-        self.parentSet = parent_set
+    def __init__(self, token, xy_coordinates, is_goal):
         self.token = token
         self.xyCoordinates = xy_coordinates
         self.isGoal = is_goal

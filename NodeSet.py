@@ -5,8 +5,6 @@ from Node import Node
 
 
 class NodeSet:
-    nodes: List[List[Node]] = None
-
     def __init__(self, nodes: List[List[Node]]):
         for i in range(len(nodes)):
             for j in range(len(nodes[i])):

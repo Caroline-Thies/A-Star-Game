@@ -1,10 +1,3 @@
 class Token:
-    canReach: dict = {
-        "left": False,
-        "right": False,
-        "up": False,
-        "down": False
-    }
-
-    def __init__(self, can_reach: dict):
-        self.canReach = can_reach
+    def __init__(self, left: bool, right: bool, up: bool, down: bool):
+        self.canReach = {"left": left, "right": right, "up": up, "down": down}
