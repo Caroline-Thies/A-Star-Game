@@ -5,8 +5,8 @@ from Node import Node
 from NodeSet import NodeSet
 from Token import Token
 
-GOAL_X_COORDINATE = 0
-GOAL_Y_COORDINATE = 4
+GOAL_X_COORDINATE = 4
+GOAL_Y_COORDINATE = 0
 
 tokenDict = {
     0: Token(False, True, False, True),
@@ -22,7 +22,7 @@ tokenDict = {
 }
 
 
-def get_nodeset_and_free_token_from_file(filepath: str):
+def get_nodeset_and_free_token_from_file(filepath):
     nodes: List[List[Node]] = []
     free_token: Token = Token(False, False, False, False)
     with open(filepath) as csvFile:
@@ -31,7 +31,7 @@ def get_nodeset_and_free_token_from_file(filepath: str):
             if row_index < len(row) - 1:
                 nodes[row_index] = []
                 for item, item_index in row:
-                    is_goal = row_index == GOAL_X_COORDINATE and item_index == GOAL_Y_COORDINATE
+                    is_goal = row_index == GOAL_Y_COORDINATE and item_index == GOAL_X_COORDINATE
                     nodes[row_index].append(Node(tokenDict[item], [row_index, item_index], is_goal))
             else:
                 free_token = tokenDict[row[0]]
