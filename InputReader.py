@@ -23,15 +23,16 @@ tokenDict = {
 
 
 def get_nodeset_and_free_token_from_file(filepath: str):
-    nodes: List[Node] = []
-    free_token: Token
+    nodes: List[List[Node]] = []
+    free_token: Token = Token(False, False, False, False)
     with open(filepath) as csvFile:
         csv_reader = csv.reader(csvFile)
         for row, row_index in csv_reader:
             if row_index < len(row) - 1:
+                nodes[row_index] = []
                 for item, item_index in row:
                     is_goal = row_index == GOAL_X_COORDINATE and item_index == GOAL_Y_COORDINATE
-                    nodes.append(Node(tokenDict[item], [row_index, item_index], is_goal))
+                    nodes[row_index].append(Node(tokenDict[item], [row_index, item_index], is_goal))
             else:
                 free_token = tokenDict[row[0]]
     return NodeSet(nodes), free_token
