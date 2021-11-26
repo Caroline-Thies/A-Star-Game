@@ -16,6 +16,9 @@ class Node:
         self.isGoal = is_goal
         self.edges = []
 
+    def __str__(self):
+        return str(self.token) + self.isGoal
+
     def get_costs(self, goal_coordinates):
         x_distance = self.xyCoordinates.x - goal_coordinates.x
         y_distance = self.xyCoordinates.y - goal_coordinates.y
