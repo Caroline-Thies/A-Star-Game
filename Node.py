@@ -8,34 +8,37 @@ import sys
 
 from TokenPush import TokenPush
 
+
 class Node:
     token: Token = None
-    edges : List[Edge] = None
-    xyCoordinates = {"x" : 0, "y" : 0}
-    isGoal : bool = None
-    stepsToReach : int = sys.maxsize
+    edges: List[Edge] = None
+    xyCoordinates = {"x": 0, "y": 0}
+    isGoal: bool = None
+    stepsToReach: int = sys.maxsize
     pathPredecessor = None
-    parentSet : NodeSet = None
-    
-    def __init__(self, parentSet, token, edges, xyCoordinates, isGoal):
-        self.parentSet = parentSet
+    parentSet: NodeSet = None
+
+    def __init__(self, parent_set, token, edges, xy_coordinates, is_goal):
+        self.parentSet = parent_set
         self.token = token
         self.edges = edges
-        self.xyCoordinates = xyCoordinates
-        self.isGoal = isGoal
+        self.xyCoordinates = xy_coordinates
+        self.isGoal = is_goal
 
-    def getCosts(self, goalCoordinates):
-        xDistance = self.xyCoordinates.x - goalCoordinates.x
-        yDistance = self.xyCoordinates.y - goalCoordinates.y
-        absDistance = abs(xDistance) + abs(yDistance)
-        return self.stepsToReach + absDistance
-    def updateStepsToReach(self, newStepsToReach, node):
-        if newStepsToReach < newStepsToReach:
+    def get_costs(self, goal_coordinates):
+        x_distance = self.xyCoordinates.x - goal_coordinates.x
+        y_distance = self.xyCoordinates.y - goal_coordinates.y
+        abs_distance = abs(x_distance) + abs(y_distance)
+        return self.stepsToReach + abs_distance
+
+    def update_steps_to_reach(self, new_steps_to_reach, node):
+        if new_steps_to_reach < new_steps_to_reach:
             self.pathPredecessor = node
-            self.stepsToReach = newStepsToReach
-    def getEdges(self, freeToken):
-        tokenPushEdges = []
+            self.stepsToReach = new_steps_to_reach
+
+    def get_edges(self, free_token):
+        token_push_edges = []
         for i in range(1, 6):
-            tokenPush = TokenPush(freeToken, i, self.parentSet, self)
-            tokenPushEdges.append(Edge(self, tokenPush.activeNodeAfter, tokenPush))
-        return self.edges.extend(tokenPushEdges)
+            token_push = TokenPush(free_token, i, self.parentSet, self)
+            token_push_edges.append(Edge(self, token_push.activeNodeAfter, token_push))
+        return self.edges.extend(token_push_edges)
