@@ -4,9 +4,10 @@ from Token import Token
 
 
 class Node:
-    def __init__(self, token, xy_coordinates, is_goal):
+    def __init__(self, token, row, col, is_goal):
         self.token = token
-        self.xyCoordinates = xy_coordinates
+        self.row = row
+        self.col = col
         self.isGoal = is_goal
         self.edges = []
         self.pathPredecessor = None
@@ -70,7 +71,7 @@ class NodeSet:
             row1, row2, row3 = "", "", ""
             for node in row:
                 row1 += node.token.str_row1()
-                row2 += node.token.str_row2()
+                row2 += node.token.str_row2(is_goal=node.isGoal)
                 row3 += node.token.str_row3()
             result += row1 + "\n" + row2 + "\n" + row3 + "\n"
         return result

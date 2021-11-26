@@ -28,13 +28,20 @@ class Token:
         else:
             return "       "
 
-    def str_row2(self):
+    def str_row2(self, is_start: bool = False, is_goal: bool = False, is_player: bool = False):
         row2 = ""
         if self.canReach["left"]:
             row2 += "-- "
         else:
             row2 += "   "
-        row2 += "*"
+        if is_player:
+            row2 += "*"
+        elif is_goal:
+            row2 += "g"
+        elif is_start:
+            row2 += "s"
+        else:
+            row2 += "*"
         if self.canReach["right"]:
             row2 += " --"
         else:

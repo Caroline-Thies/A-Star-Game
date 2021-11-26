@@ -4,8 +4,8 @@ from typing import List
 from Model import NodeSet, Node
 from Token import Token
 
-GOAL_X_COORDINATE = 4
-GOAL_Y_COORDINATE = 0
+GOAL_COL = 3
+GOAL_ROW = 0
 
 tokenDict = {
     "0": Token(False, True, False, True),
@@ -33,9 +33,10 @@ def get_nodeset_and_free_token_from_file(filepath):
                 nodes.append([])
                 item_index = 0
                 for item in row:
-                    is_goal = row_index == GOAL_Y_COORDINATE and item_index == GOAL_X_COORDINATE
+                    is_goal = row_index == GOAL_ROW and item_index == GOAL_COL
+                    print(str(row_index) + "|" + str(item_index))
                     token = tokenDict[item]
-                    nodes[row_index].append(Node(token, [row_index, item_index], is_goal))
+                    nodes[row_index].append(Node(token, row_index, item_index, is_goal))
                     item_index += 1
             else:
                 free_token = tokenDict[str(row[0])]
