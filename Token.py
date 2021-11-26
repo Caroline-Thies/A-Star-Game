@@ -4,15 +4,45 @@ class Token:
 
     def __str__(self):
         row1 = ""
-        if self.canReach.up:
-            row1 = "  |  "
+        if self.canReach["up"]:
+            row1 = "   |   "
         row2 = ""
-        if self.canReach.left:
-            row2 += "--"
+        if self.canReach["left"]:
+            row2 += "-- "
         else:
-            row2 += "  "
+            row2 += "   "
         row2 += "*"
+        if self.canReach["right"]:
+            row2 += " --"
+        else:
+            row2 += "   "
+
         row3 = ""
-        if self.canReach.down:
-            row3 = "  |  "
+        if self.canReach["down"]:
+            row3 = "   |   "
         return row1 + "\n" + row2 + "\n" + row3
+
+    def str_row1(self):
+        if self.canReach["up"]:
+            return "   |   "
+        else:
+            return "       "
+
+    def str_row2(self):
+        row2 = ""
+        if self.canReach["left"]:
+            row2 += "-- "
+        else:
+            row2 += "   "
+        row2 += "*"
+        if self.canReach["right"]:
+            row2 += " --"
+        else:
+            row2 += "   "
+        return row2
+
+    def str_row3(self):
+        if self.canReach["down"]:
+            return "   |   "
+        else:
+            return "       "
