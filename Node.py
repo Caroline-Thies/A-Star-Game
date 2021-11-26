@@ -18,12 +18,12 @@ class Node:
     pathPredecessor = None
     parentSet: NodeSet = None
 
-    def __init__(self, parent_set, token, edges, xy_coordinates, is_goal):
+    def __init__(self, parent_set, token, xy_coordinates, is_goal):
         self.parentSet = parent_set
         self.token = token
-        self.edges = edges
         self.xyCoordinates = xy_coordinates
         self.isGoal = is_goal
+        self.edges = []
 
     def get_costs(self, goal_coordinates):
         x_distance = self.xyCoordinates.x - goal_coordinates.x
