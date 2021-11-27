@@ -6,6 +6,7 @@ from typing import List
 import Model
 from Token import Token
 
+
 # To avoid circular imports, all these classes must be in one file
 
 class Node:
@@ -84,6 +85,7 @@ class Edge:
 
 class NodeSet:
     total_nodesets = 0
+
     def __init__(self, nodes: List[List[Node]], free_token: Token, dest_row: int, dest_col: int):
         self.nodes = nodes
         for row in range(len(nodes)):
