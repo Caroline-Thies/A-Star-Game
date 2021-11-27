@@ -20,6 +20,8 @@ def print_path_edges(start_node, end_node):
         print(edge)
         if not type(edge.movement) == type("  "):
             print(edge.dest.parent_set)
+            print("new free token:")
+            print(edge.dest.parent_set.free_token)
 
 
 initial_nodeset = InputReader.get_nodeset_and_free_token_from_file(INPUT_FILE_PATH)
