@@ -28,17 +28,15 @@ def get_nodeset_and_free_token_from_file(filepath):
         csv_reader = csv.reader(csvFile, delimiter=";")
         row_index = 0
         for row in csv_reader:
-            print("row index: " + str(row_index))
             if row_index < 5:
                 nodes.append([])
                 item_index = 0
                 for item in row:
                     is_goal = row_index == GOAL_ROW and item_index == GOAL_COL
-                    print(str(row_index) + "|" + str(item_index))
                     token = tokenDict[item]
                     nodes[row_index].append(Node(token, row_index, item_index, is_goal))
                     item_index += 1
             else:
                 free_token = tokenDict[str(row[0])]
             row_index += 1
-    return NodeSet(nodes), free_token
+    return NodeSet(nodes, free_token, GOAL_ROW, GOAL_COL)
